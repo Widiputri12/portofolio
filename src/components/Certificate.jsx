@@ -5,6 +5,7 @@ import FullscreenIcon from "@mui/icons-material/Fullscreen"
 
 const Certificate = ({ ImgSertif }) => {
 	const [open, setOpen] = useState(false)
+	const isPdf = ImgSertif?.toLowerCase().includes(".pdf")
 
 	const handleOpen = () => {
 		setOpen(true)
@@ -55,21 +56,21 @@ const Certificate = ({ ImgSertif }) => {
 							zIndex: 1,
 						},
 					}}>
-					<img
-						className="certificate-image"
-						src={ImgSertif}
-						alt="Certificate"
-						style={{
-							width: "100%",
-							height: "auto",
-							display: "block",
-							objectFit: "cover",
-							filter: "contrast(1.10) brightness(0.9) saturate(1.1)",
-							transition: "filter 0.3s ease",
-							aspectRatio: "16/11.5",
-						}}
-						onClick={handleOpen}
-					/>
+					{isPdf ? (
+						<iframe
+							src={ImgSertif}
+							title="Certificate"
+							style={{ width: "100%", height: 320, display: "block", border: 0, pointerEvents: "none" }}
+						/>
+					) : (
+						<img
+							className="certificate-image"
+							src={ImgSertif}
+							alt="Certificate"
+							style={{ width: "100%", height: "auto", display: "block", objectFit: "cover", filter: "contrast(1.10) brightness(0.9) saturate(1.1)", transition: "filter 0.3s ease", aspectRatio: "16/11.5" }}
+							onClick={handleOpen}
+						/>
+					)}
 				</Box>
 
 				{/* Hover Overlay */}
@@ -178,17 +179,11 @@ const Certificate = ({ ImgSertif }) => {
 					</IconButton>
 
 					{/* Modal Image */}
-					<img
-						src={ImgSertif}
-						alt="Certificate Full View"
-						style={{
-							display: "block",
-							maxWidth: "100%",
-							maxHeight: "90vh",
-							margin: "0 auto",
-							objectFit: "contain",
-						}}
-					/>
+					{isPdf ? (
+						<iframe src={ImgSertif} title="Certificate Full View" style={{ width: "80vw", height: "90vh", border: 0 }} />
+					) : (
+						<img src={ImgSertif} alt="Certificate Full View" style={{ display: "block", maxWidth: "100%", maxHeight: "90vh", margin: "0 auto", objectFit: "contain" }} />
+					)}
 				</Box>
 			</Modal>
 		</Box>

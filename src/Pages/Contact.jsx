@@ -234,7 +234,7 @@ const ContactPage = () => {
                 <span className="inline-block h-1 w-8 rounded-full bg-indigo-500" />
                 Connect With Me
               </h3>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
                 {contactLinks.map(({ label, handle, url, icon: Icon }) => (
                   <a
                     key={label}
@@ -242,14 +242,14 @@ const ContactPage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     title={label}
-                    className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
+                    className="group flex min-w-0 items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-3 transition-all hover:border-white/20 hover:bg-white/10 sm:gap-3 sm:p-4"
                   >
-                    <span className="rounded-lg bg-indigo-500/20 p-2 text-indigo-300 transition-colors group-hover:text-white">
+                    <span className="shrink-0 rounded-lg bg-indigo-500/20 p-2 text-indigo-300 transition-colors group-hover:text-white">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <span className="min-w-0">
-                      <span className="block text-sm font-bold text-gray-200">{label}</span>
-                      <span className="block truncate text-xs text-gray-400">{handle}</span>
+                    <span className="min-w-0 flex-1 overflow-hidden">
+                      <span className="block truncate whitespace-nowrap text-sm font-bold text-gray-200">{label}</span>
+                      <span className="block truncate whitespace-nowrap text-xs text-gray-400">{handle}</span>
                     </span>
                   </a>
                 ))}

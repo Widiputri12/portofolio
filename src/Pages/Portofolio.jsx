@@ -102,19 +102,19 @@ function a11yProps(index) {
 
 const techStacks = [
   { icon: "html.svg", language: "HTML" },
-  { icon: null, language: "Python" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", language: "Python" },
   { icon: "javascript.svg", language: "JavaScript" },
-  { icon: null, language: "Laravel" },
-  { icon: null, language: "Microsoft Word" },
-  { icon: null, language: "Microsoft Excel" },
-  { icon: null, language: "Spreadsheets" },
-  { icon: null, language: "Figma" },
-  { icon: null, language: "Canva" },
-  { icon: null, language: "Adobe" },
-  { icon: null, language: "MySQL" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg", language: "Laravel" },
+  { icon: "https://upload.wikimedia.org/wikipedia/commons/1/19/Microsoft_Office_Word_%282019%E2%80%932025%29.svg", language: "Microsoft Word" },
+  { icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftexcel.svg", language: "Microsoft Excel" },
+  { icon: "https://cdn.simpleicons.org/googlesheets/34A853", language: "Spreadsheets" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", language: "Figma" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg", language: "Canva" },
+  { icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/adobepremierepro.svg", language: "Adobe" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", language: "MySQL" },
   { icon: "firebase.svg", language: "Firebase" },
   { icon: "bootstrap.svg", language: "Bootstrap" },
-  { icon: null, language: "Database" },
+  { icon: "https://cdn-icons-png.flaticon.com/512/9850/9850812.png", language: "Database" },
 ];
 
 export default function FullWidthTabs() {

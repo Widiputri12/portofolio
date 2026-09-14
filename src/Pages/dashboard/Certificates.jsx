@@ -59,6 +59,7 @@ export default function Certificates() {
   const [uploading, setUploading] = useState(false)
   const [dragOver, setDragOver] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   const fetchCerts = async () => {
     setLoading(true)
@@ -71,6 +72,11 @@ export default function Certificates() {
 
   const handleFile = (f) => {
     if (!f) return
+    if (!f.type.startsWith('image/') && f.type !== 'application/pdf') {
+      setError('Please select an image or PDF file.')
+      return
+    }
+    setError('')
     setFile(f)
     setPreview(URL.createObjectURL(f))
   }
@@ -78,12 +84,29 @@ export default function Certificates() {
   const uploadImage = async () => {
     if (!file) return
     setUploading(true)
-    const fileName = `cert-${Date.now()}-${file.name}`
-    await supabase.storage.from('certificate-images').upload(fileName, file)
-    const { data } = supabase.storage.from('certificate-images').getPublicUrl(fileName)
-    await supabase.from('certificates').insert({ Img: data.publicUrl })
-    setFile(null); setPreview(null); setUploading(false)
-    fetchCerts()
+    setError('')
+    try {
+      const extension = file.name.split('.').pop()?.toLowerCase() || 'jpg'
+      const fileName = `cert-${Date.now()}.${extension}`
+      const { error: uploadError } = await supabase.storage
+        .from('certificate-images')
+        .upload(fileName, file, { contentType: file.type, upsert: false })
+
+      if (uploadError) throw uploadError
+
+      const { data } = supabase.storage.from('certificate-images').getPublicUrl(fileName)
+      const { error: insertError } = await supabase.from('certificates').insert({ Img: data.publicUrl })
+
+      if (insertError) throw insertError
+
+      setFile(null)
+      setPreview(null)
+      await fetchCerts()
+    } catch (uploadError) {
+      setError(uploadError.message || 'Certificate upload failed.')
+    } finally {
+      setUploading(false)
+    }
   }
 
   const deleteCert = async (id) => {
@@ -126,17 +149,21 @@ export default function Certificates() {
             }`}
           >
             {preview ? (
-              <img src={preview} alt="preview" className="max-h-40 object-contain rounded-lg p-2" />
+              file?.type === 'application/pdf' ? (
+                <iframe src={preview} title="Certificate preview" className="w-full h-40 rounded-lg" />
+              ) : (
+                <img src={preview} alt="preview" className="max-h-40 object-contain rounded-lg p-2" />
+              )
             ) : (
               <div className="text-center space-y-2 p-6">
                 <div className="w-11 h-11 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto">
                   <ImageIcon className="w-5 h-5 text-indigo-400" />
                 </div>
                 <p className="text-sm text-gray-300">Drag & drop or click to upload</p>
-                <p className="text-xs text-gray-600">PNG, JPG, WEBP supported</p>
+                <p className="text-xs text-gray-600">PNG, JPG, WEBP, PDF supported</p>
               </div>
             )}
-            <input type="file" accept="image/*" onChange={e => handleFile(e.target.files[0])} className="hidden" />
+            <input type="file" accept="image/*,application/pdf" onChange={e => handleFile(e.target.files[0])} className="hidden" />
           </label>
 
           {file && (
@@ -157,6 +184,7 @@ export default function Certificates() {
               </div>
             </div>
           )}
+          {error && <p className="text-sm text-red-300" role="alert">{error}</p>}
         </div>
       </Card>
 
