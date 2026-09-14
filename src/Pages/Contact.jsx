@@ -234,7 +234,7 @@ const ContactPage = () => {
                 <span className="inline-block h-1 w-8 rounded-full bg-indigo-500" />
                 Connect With Me
               </h3>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+              <div className="grid grid-cols-1 gap-3">
                 {contactLinks.map(({ label, handle, url, icon: Icon }) => (
                   <a
                     key={label}
