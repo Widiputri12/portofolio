@@ -238,7 +238,7 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              Saya merupakan lulusan D-III Manajemen Informatika Politeknik Negeri Malang (PSDKU Kediri) yang memiliki minat pada pengelolaan data dan pengembangan aplikasi berbasis web. Saya terbiasa melakukan administrasi data, pengelolaan dokumen, pengolahan database, dan pekerjaan menggunakan Microsoft Office secara teliti dan terorganisir. Selain itu, saya memiliki pengalaman menggunakan PHP, Laravel, MySQL, HTML, CSS, JavaScript, serta integrasi REST API.
+              Saya merupakan lulusan D-III Manajemen Informatika Politeknik Negeri Malang yang memiliki minat pada pengelolaan data dan pengembangan aplikasi berbasis web. Saya terbiasa melakukan administrasi data, pengelolaan dokumen, pengolahan database, dan pekerjaan menggunakan Microsoft Office secara teliti dan terorganisir. Selain itu, saya memiliki pengalaman menggunakan PHP, Laravel, MySQL, HTML, CSS, JavaScript, serta integrasi REST API.
                   </p>
 
                {/* Quote Section */}
@@ -267,7 +267,7 @@ const AboutPage = () => {
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-indigo-300">Pendidikan</h3>
                 <p className="mt-2 text-sm text-gray-200">D-III Manajemen Informatika</p>
-                <p className="text-sm text-gray-400">Politeknik Negeri Malang (PSDKU Kediri), 2023-2026</p>
+                <p className="text-sm text-gray-400">Politeknik Negeri Malang, 2023-2026</p>
               </div>
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-indigo-300">Pengalaman</h3>
